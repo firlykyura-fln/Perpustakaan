@@ -346,6 +346,50 @@
     .feature-card h3 { font-size: 1rem; font-weight: 800; color: var(--primary); margin-bottom: 6px; }
     .feature-card p { font-size: .875rem; color: var(--muted); line-height: 1.55; }
 
+    /* ── FEATURE CARD AS LINK ── */
+    a.feature-card {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+    a.feature-card::after {
+      content: 'Buka →';
+      position: absolute;
+      bottom: 16px; right: 18px;
+      font-size: .72rem;
+      font-weight: 800;
+      color: var(--accent);
+      opacity: 0;
+      transform: translateX(-6px);
+      transition: all .25s;
+    }
+    a.feature-card:hover::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    a.feature-card:hover {
+      border-top-color: #27ae60;
+      background: linear-gradient(160deg, #f0fff4, #fff);
+      box-shadow: 0 10px 28px rgba(39,174,96,.15);
+    }
+    a.feature-card:hover h3 { color: #1e8449; }
+    a.feature-card .link-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 12px;
+      font-size: .75rem;
+      font-weight: 800;
+      color: white;
+      background: var(--primary);
+      padding: 4px 12px;
+      border-radius: 20px;
+      transition: background .2s;
+    }
+    a.feature-card:hover .link-tag { background: #1e8449; }
+
     /* ── PENGUMUMAN ── */
     .announcement-list { display: flex; flex-direction: column; gap: 14px; }
     .announcement-item {
@@ -477,6 +521,7 @@
     <a href="#" class="active">🏠 Beranda</a>
     <a href="#koleksi">📚 Koleksi Buku</a>
     <a href="#cari">🔍 Cari Buku</a>
+    <a href="peminjaman/peminjaman.html">📋 Peminjaman</a>
     <a href="#pengumuman">📢 Pengumuman</a>
     <a href="#jam">🕐 Jam Operasional</a>
     <a href="#kontak">📍 Kontak</a>
@@ -521,11 +566,12 @@
     <h2 class="section-title">Layanan <span>Perpustakaan</span></h2>
     <p class="section-sub">Berbagai layanan untuk mendukung kegiatan belajar siswa</p>
     <div class="features-grid">
-      <div class="feature-card">
+      <a href="peminjaman/peminjaman.html" class="feature-card">
         <div class="feature-icon">📖</div>
         <h3>Peminjaman Buku</h3>
         <p>Pinjam buku favorit kamu hingga 7 hari dan dapat diperpanjang satu kali.</p>
-      </div>
+        <span class="link-tag">📋 Buka Halaman Peminjaman</span>
+      </a>
       <div class="feature-card">
         <div class="feature-icon">🔍</div>
         <h3>Katalog Digital</h3>
@@ -737,7 +783,7 @@
       <div class="feature-card">
         <div class="feature-icon">✉️</div>
         <h3>Email</h3>
-        <p>perpustakaan@sdmuh01kukusan.sch.id</p>
+        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b8c8ddcac8cdcbccd9d3d9d9d6f8cbdcd5cdd08889d3cdd3cdcbd9d696cbdbd096d1dc">[email&#160;protected]</a></p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">👩‍🏫</div>
@@ -775,9 +821,4 @@
     </div>
   </div>
   <div class="footer-bottom">
-    &copy; 2026 Perpustakaan SD Muhammadiyah 01 Kukusan — Depok, Jawa Barat. Dibuat dengan ❤️ untuk siswa kami.
-  </div>
-</footer>
-
-</body>
-</html>
+    &copy; 2026 P
