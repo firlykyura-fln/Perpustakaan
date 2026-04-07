@@ -3,22 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Perpustakaan SD Muhammadiyah 01 Kukusan</title>
+  <title>Peminjaman Buku — Perpustakaan SD Muhammadiyah 01 Kukusan</title>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --primary: #1a5276;
-      --accent: #f39c12;
-      --accent2: #e74c3c;
-      --light: #eaf4fb;
-      --white: #ffffff;
-      --text: #1c2833;
-      --muted: #5d6d7e;
-      --card-bg: #ffffff;
+      --primary:    #1a5276;
+      --primary-dk: #154360;
+      --primary-xdk:#0e2f44;
+      --accent:     #f39c12;
+      --accent-dk:  #d68910;
+      --accent2:    #e74c3c;
+      --green:      #1e8449;
+      --green-lt:   #d5f5e3;
+      --red-lt:     #fdecea;
+      --yellow-lt:  #fef9e7;
+      --light:      #eaf4fb;
+      --white:      #ffffff;
+      --text:       #1c2833;
+      --muted:      #5d6d7e;
+      --border:     #d5e8f7;
       --section-bg: #f0f8ff;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
 
     body {
       font-family: 'Nunito', sans-serif;
@@ -27,477 +34,411 @@
       overflow-x: hidden;
     }
 
-    /* ── HEADER ── */
+    /* ─────────── HEADER ─────────── */
     header {
-      background: linear-gradient(135deg, #1a5276 0%, #154360 60%, #0e2f44 100%);
+      background: linear-gradient(135deg,#1a5276 0%,#154360 60%,#0e2f44 100%);
       color: white;
-      padding: 0;
       position: relative;
       overflow: hidden;
     }
-
     header::before {
-      content: '';
-      position: absolute;
-      top: -80px; right: -80px;
-      width: 320px; height: 320px;
-      border-radius: 50%;
-      background: rgba(243,156,18,.15);
+      content:''; position:absolute; top:-80px; right:-80px;
+      width:320px; height:320px; border-radius:50%;
+      background:rgba(243,156,18,.15);
     }
     header::after {
-      content: '';
-      position: absolute;
-      bottom: -60px; left: -60px;
-      width: 220px; height: 220px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.06);
+      content:''; position:absolute; bottom:-60px; left:-60px;
+      width:220px; height:220px; border-radius:50%;
+      background:rgba(255,255,255,.06);
     }
-
     .header-inner {
-      max-width: 1100px;
-      margin: auto;
-      padding: 32px 24px 28px;
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      position: relative;
-      z-index: 1;
+      max-width:1100px; margin:auto;
+      padding:32px 24px 28px;
+      display:flex; align-items:center; gap:24px;
+      position:relative; z-index:1;
     }
-
     .logo-circle {
-      width: 80px; height: 80px;
-      background: var(--accent);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.4rem;
-      flex-shrink: 0;
-      box-shadow: 0 6px 24px rgba(243,156,18,.4);
-      animation: pulse 3s ease-in-out infinite;
+      width:80px; height:80px; background:var(--accent);
+      border-radius:50%; display:flex; align-items:center;
+      justify-content:center; font-size:2.4rem; flex-shrink:0;
+      box-shadow:0 6px 24px rgba(243,156,18,.4);
+      animation:pulse 3s ease-in-out infinite;
     }
     @keyframes pulse {
-      0%,100% { box-shadow: 0 6px 24px rgba(243,156,18,.4); }
-      50%      { box-shadow: 0 6px 36px rgba(243,156,18,.7); }
+      0%,100%{ box-shadow:0 6px 24px rgba(243,156,18,.4); }
+      50%    { box-shadow:0 6px 36px rgba(243,156,18,.7); }
     }
-
     .header-text h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      font-weight: 900;
-      line-height: 1.15;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.3rem,2.8vw,1.9rem); font-weight:900; line-height:1.2;
     }
-    .header-text .subtitle {
-      font-size: .95rem;
-      opacity: .8;
-      margin-top: 4px;
-      font-weight: 600;
-      letter-spacing: .5px;
-    }
+    .header-text .subtitle { font-size:.9rem; opacity:.8; margin-top:4px; font-weight:600; }
     .header-text .tagline {
-      margin-top: 8px;
-      font-size: .85rem;
-      background: rgba(243,156,18,.2);
-      border: 1px solid rgba(243,156,18,.4);
-      border-radius: 20px;
-      padding: 3px 14px;
-      display: inline-block;
-      color: #f9e79f;
-      font-weight: 700;
+      margin-top:8px; font-size:.82rem;
+      background:rgba(243,156,18,.2); border:1px solid rgba(243,156,18,.4);
+      border-radius:20px; padding:3px 14px; display:inline-block;
+      color:#f9e79f; font-weight:700;
     }
 
-    /* ── NAV ── */
-    nav {
-      background: var(--primary);
-      border-top: 3px solid var(--accent);
-    }
+    /* ─────────── NAV ─────────── */
+    nav { background:var(--primary); border-top:3px solid var(--accent); }
     .nav-inner {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      overflow-x: auto;
-      scrollbar-width: none;
+      max-width:1100px; margin:auto;
+      display:flex; overflow-x:auto; scrollbar-width:none;
     }
-    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-inner::-webkit-scrollbar { display:none; }
     nav a {
-      color: rgba(255,255,255,.8);
-      text-decoration: none;
-      padding: 14px 22px;
-      font-weight: 700;
-      font-size: .9rem;
-      white-space: nowrap;
-      transition: all .2s;
-      border-bottom: 3px solid transparent;
-      margin-bottom: -3px;
+      color:rgba(255,255,255,.8); text-decoration:none;
+      padding:14px 22px; font-weight:700; font-size:.9rem;
+      white-space:nowrap; transition:all .2s;
+      border-bottom:3px solid transparent; margin-bottom:-3px;
     }
     nav a:hover, nav a.active {
-      color: var(--accent);
-      border-bottom-color: var(--accent);
-      background: rgba(243,156,18,.08);
+      color:var(--accent); border-bottom-color:var(--accent);
+      background:rgba(243,156,18,.08);
     }
 
-    /* ── HERO BANNER ── */
-    .hero {
-      background: linear-gradient(120deg, #d6eaf8, #fef9e7 60%, #fdebd0);
-      padding: 48px 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+    /* ─────────── PAGE HERO ─────────── */
+    .page-hero {
+      background:linear-gradient(120deg,#d6eaf8,#fef9e7 60%,#fdebd0);
+      padding:40px 24px 32px; text-align:center; position:relative; overflow:hidden;
     }
-    .hero::before {
-      content: '📚';
-      font-size: 10rem;
-      position: absolute;
-      left: -2rem; top: 50%;
-      transform: translateY(-50%) rotate(-15deg);
-      opacity: .08;
-      pointer-events: none;
+    .page-hero::before {
+      content:'📋'; font-size:9rem; position:absolute;
+      left:-2rem; top:50%; transform:translateY(-50%) rotate(-12deg);
+      opacity:.07; pointer-events:none;
     }
-    .hero::after {
-      content: '📖';
-      font-size: 10rem;
-      position: absolute;
-      right: -2rem; top: 50%;
-      transform: translateY(-50%) rotate(15deg);
-      opacity: .08;
-      pointer-events: none;
+    .page-hero::after {
+      content:'🔖'; font-size:9rem; position:absolute;
+      right:-2rem; top:50%; transform:translateY(-50%) rotate(12deg);
+      opacity:.07; pointer-events:none;
     }
-    .hero h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.6rem, 4vw, 2.6rem);
-      color: var(--primary);
-      font-weight: 900;
+    .page-hero h2 {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.5rem,3.5vw,2.4rem); color:var(--primary); font-weight:900;
     }
-    .hero p {
-      font-size: 1.05rem;
-      color: var(--muted);
-      margin-top: 10px;
-      max-width: 560px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.6;
+    .page-hero p {
+      font-size:1rem; color:var(--muted); margin-top:10px;
+      max-width:520px; margin-left:auto; margin-right:auto; line-height:1.6;
     }
-    .hero-btns {
-      margin-top: 24px;
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
+
+    /* ─────────── BREADCRUMB ─────────── */
+    .breadcrumb {
+      background:var(--white); border-bottom:1px solid var(--border);
+      padding:10px 24px; font-size:.82rem; color:var(--muted);
     }
+    .breadcrumb a { color:var(--primary); text-decoration:none; font-weight:700; }
+    .breadcrumb a:hover { text-decoration:underline; }
+    .breadcrumb span { margin:0 6px; }
+
+    /* ─────────── LAYOUT ─────────── */
+    .main-wrap {
+      max-width:1100px; margin:auto;
+      padding:36px 24px 60px;
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap:28px;
+      align-items:start;
+    }
+    @media(max-width:860px){
+      .main-wrap { grid-template-columns:1fr; }
+    }
+
+    /* ─────────── CARDS ─────────── */
+    .card {
+      background:var(--white); border-radius:20px;
+      box-shadow:0 2px 16px rgba(0,0,0,.07);
+      padding:28px;
+      margin-bottom:24px;
+    }
+    .card:last-child { margin-bottom:0; }
+    .card-header {
+      display:flex; align-items:center; gap:12px; margin-bottom:22px;
+      padding-bottom:16px; border-bottom:2px solid var(--light);
+    }
+    .card-icon {
+      width:46px; height:46px; border-radius:14px;
+      display:flex; align-items:center; justify-content:center; font-size:1.5rem;
+      flex-shrink:0;
+    }
+    .icon-blue   { background:#dbeafe; }
+    .icon-green  { background:var(--green-lt); }
+    .icon-yellow { background:#fef9c3; }
+    .icon-red    { background:var(--red-lt); }
+    .icon-purple { background:#ede9fe; }
+    .card-header h3 {
+      font-family:'Playfair Display',serif;
+      font-size:1.15rem; color:var(--primary); font-weight:700;
+    }
+    .card-header p { font-size:.82rem; color:var(--muted); margin-top:2px; }
+
+    /* ─────────── FORM ─────────── */
+    .form-grid {
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
+    @media(max-width:560px){ .form-grid{ grid-template-columns:1fr; } }
+    .form-group { display:flex; flex-direction:column; gap:6px; }
+    .form-group.full { grid-column:1/-1; }
+    label {
+      font-size:.82rem; font-weight:800; color:var(--primary);
+      text-transform:uppercase; letter-spacing:.4px;
+    }
+    label .req { color:var(--accent2); margin-left:3px; }
+    input[type=text], input[type=date], input[type=number],
+    input[type=email], select, textarea {
+      padding:11px 16px;
+      border:2px solid var(--border);
+      border-radius:12px;
+      font-family:'Nunito',sans-serif;
+      font-size:.9rem;
+      color:var(--text);
+      background:var(--light);
+      outline:none;
+      transition:border .2s, box-shadow .2s;
+      width:100%;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color:var(--primary);
+      box-shadow:0 0 0 3px rgba(26,82,118,.12);
+      background:var(--white);
+    }
+    textarea { resize:vertical; min-height:90px; }
+    .form-hint { font-size:.76rem; color:var(--muted); margin-top:2px; }
+
+    /* ─────────── BUTTONS ─────────── */
     .btn {
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-family: 'Nunito', sans-serif;
-      font-weight: 800;
-      font-size: .95rem;
-      cursor: pointer;
-      border: none;
-      text-decoration: none;
-      transition: all .25s;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
+      padding:12px 26px; border-radius:50px; font-family:'Nunito',sans-serif;
+      font-weight:800; font-size:.9rem; cursor:pointer; border:none;
+      text-decoration:none; transition:all .25s;
+      display:inline-flex; align-items:center; gap:8px;
     }
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-      box-shadow: 0 4px 16px rgba(26,82,118,.3);
+    .btn-primary { background:var(--primary); color:white; box-shadow:0 4px 14px rgba(26,82,118,.3); }
+    .btn-primary:hover { background:var(--primary-dk); transform:translateY(-2px); box-shadow:0 8px 22px rgba(26,82,118,.4); }
+    .btn-accent  { background:var(--accent); color:white; box-shadow:0 4px 14px rgba(243,156,18,.3); }
+    .btn-accent:hover  { background:var(--accent-dk); transform:translateY(-2px); }
+    .btn-outline {
+      background:transparent; color:var(--primary);
+      border:2px solid var(--primary);
     }
-    .btn-primary:hover { background: #154360; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,82,118,.4); }
-    .btn-accent {
-      background: var(--accent);
-      color: white;
-      box-shadow: 0 4px 16px rgba(243,156,18,.3);
-    }
-    .btn-accent:hover { background: #d68910; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(243,156,18,.4); }
+    .btn-outline:hover { background:var(--primary); color:white; }
+    .btn-sm { padding:7px 18px; font-size:.8rem; border-radius:50px; }
+    .btn-green { background:#27ae60; color:white; }
+    .btn-green:hover { background:#1e8449; transform:translateY(-2px); }
+    .btn-red   { background:var(--accent2); color:white; }
+    .btn-row   { display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; }
 
-    /* ── STATS BAR ── */
-    .stats-bar {
-      background: var(--primary);
-      color: white;
-      padding: 20px 24px;
+    /* ─────────── STATUS BADGES ─────────── */
+    .badge {
+      display:inline-block; padding:3px 12px; border-radius:20px;
+      font-size:.72rem; font-weight:800;
     }
-    .stats-inner {
-      max-width: 1100px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 8px;
-      text-align: center;
-    }
-    .stat-item .num {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: var(--accent);
-      display: block;
-    }
-    .stat-item .lbl {
-      font-size: .8rem;
-      opacity: .75;
-      font-weight: 600;
-    }
+    .badge-active   { background:#dbeafe; color:#1a5276; }
+    .badge-due      { background:#fef9c3; color:#b7770d; }
+    .badge-overdue  { background:var(--red-lt); color:#c0392b; }
+    .badge-returned { background:var(--green-lt); color:var(--green); }
+    .badge-ext      { background:#ede9fe; color:#6c3483; }
 
-    /* ── SECTIONS ── */
-    section {
-      padding: 48px 24px;
+    /* ─────────── ACTIVE LOANS TABLE ─────────── */
+    .loan-table { width:100%; border-collapse:collapse; }
+    .loan-table th {
+      background:var(--primary); color:white;
+      padding:11px 14px; text-align:left; font-size:.82rem; font-weight:700;
     }
-    section.alt {
-      background: var(--section-bg);
+    .loan-table th:first-child { border-radius:10px 0 0 0; }
+    .loan-table th:last-child  { border-radius:0 10px 0 0; }
+    .loan-table td {
+      padding:12px 14px; font-size:.85rem;
+      border-bottom:1px solid #eaf0f6; vertical-align:middle;
     }
-    .section-inner {
-      max-width: 1100px;
-      margin: auto;
+    .loan-table tr:last-child td { border-bottom:none; }
+    .loan-table tr:nth-child(even) td { background:#f7fbfe; }
+    .book-thumb {
+      width:36px; height:44px; border-radius:6px;
+      display:inline-flex; align-items:center; justify-content:center;
+      font-size:1.3rem; flex-shrink:0;
     }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.4rem, 3vw, 1.9rem);
-      color: var(--primary);
-      font-weight: 900;
-      margin-bottom: 6px;
-    }
-    .section-title span { color: var(--accent); }
-    .section-sub {
-      color: var(--muted);
-      font-size: .95rem;
-      margin-bottom: 28px;
-    }
+    .loan-book-cell { display:flex; align-items:center; gap:10px; }
+    .loan-book-name { font-weight:800; font-size:.88rem; }
+    .loan-book-code { font-size:.74rem; color:var(--muted); }
+    .days-left      { font-weight:800; }
+    .days-left.ok   { color:var(--green); }
+    .days-left.warn { color:#d4ac0d; }
+    .days-left.over { color:var(--accent2); }
 
-    /* ── BOOK CARDS ── */
-    .books-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 20px;
+    /* ─────────── HISTORY TABLE ─────────── */
+    .history-table { width:100%; border-collapse:collapse; }
+    .history-table th {
+      background:#f0f8ff; color:var(--primary);
+      padding:10px 14px; font-size:.8rem; font-weight:800;
+      border-bottom:2px solid var(--border); text-align:left;
     }
-    .book-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 2px 12px rgba(0,0,0,.07);
-      transition: all .3s;
-      cursor: pointer;
+    .history-table td {
+      padding:11px 14px; font-size:.83rem;
+      border-bottom:1px solid #eaf0f6;
     }
-    .book-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 28px rgba(0,0,0,.12);
-    }
-    .book-cover {
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3.5rem;
-      position: relative;
-    }
-    .book-badge {
-      position: absolute;
-      top: 10px; right: 10px;
-      background: var(--accent);
-      color: white;
-      font-size: .65rem;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 20px;
-    }
-    .book-badge.new { background: #27ae60; }
-    .book-badge.popular { background: var(--accent2); }
-    .book-info {
-      padding: 14px;
-    }
-    .book-info h4 {
-      font-size: .9rem;
-      font-weight: 800;
-      color: var(--text);
-      margin-bottom: 4px;
-      line-height: 1.3;
-    }
-    .book-info p {
-      font-size: .78rem;
-      color: var(--muted);
-    }
-    .book-info .kategori {
-      display: inline-block;
-      margin-top: 8px;
-      font-size: .7rem;
-      font-weight: 800;
-      background: var(--light);
-      color: var(--primary);
-      padding: 2px 10px;
-      border-radius: 20px;
-    }
+    .history-table tr:last-child td { border-bottom:none; }
 
-    /* ── FITUR CARDS ── */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      gap: 20px;
+    /* ─────────── RULES ─────────── */
+    .rules-list { list-style:none; display:flex; flex-direction:column; gap:10px; }
+    .rules-list li {
+      display:flex; gap:12px; align-items:flex-start;
+      padding:12px 16px; border-radius:12px;
+      background:var(--light); font-size:.88rem; line-height:1.5;
     }
-    .feature-card {
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 28px 24px;
-      box-shadow: 0 2px 12px rgba(0,0,0,.06);
-      border-top: 4px solid var(--accent);
-      transition: transform .3s;
-    }
-    .feature-card:hover { transform: translateY(-4px); }
-    .feature-card:nth-child(2) { border-top-color: #27ae60; }
-    .feature-card:nth-child(3) { border-top-color: var(--accent2); }
-    .feature-card:nth-child(4) { border-top-color: #8e44ad; }
-    .feature-icon { font-size: 2.4rem; margin-bottom: 14px; }
-    .feature-card h3 { font-size: 1rem; font-weight: 800; color: var(--primary); margin-bottom: 6px; }
-    .feature-card p { font-size: .875rem; color: var(--muted); line-height: 1.55; }
+    .rules-list li .ri { font-size:1.2rem; flex-shrink:0; margin-top:1px; }
 
-    /* ── FEATURE CARD AS LINK ── */
-    a.feature-card {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      position: relative;
-      overflow: hidden;
+    /* ─────────── DENDA TABLE ─────────── */
+    .denda-table { width:100%; border-collapse:collapse; border-radius:14px; overflow:hidden; }
+    .denda-table th {
+      background:var(--accent); color:white; padding:10px 14px;
+      font-size:.82rem; font-weight:800; text-align:left;
     }
-    a.feature-card::after {
-      content: 'Buka →';
-      position: absolute;
-      bottom: 16px; right: 18px;
-      font-size: .72rem;
-      font-weight: 800;
-      color: var(--accent);
-      opacity: 0;
-      transform: translateX(-6px);
-      transition: all .25s;
-    }
-    a.feature-card:hover::after {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    a.feature-card:hover {
-      border-top-color: #27ae60;
-      background: linear-gradient(160deg, #f0fff4, #fff);
-      box-shadow: 0 10px 28px rgba(39,174,96,.15);
-    }
-    a.feature-card:hover h3 { color: #1e8449; }
-    a.feature-card .link-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      margin-top: 12px;
-      font-size: .75rem;
-      font-weight: 800;
-      color: white;
-      background: var(--primary);
-      padding: 4px 12px;
-      border-radius: 20px;
-      transition: background .2s;
-    }
-    a.feature-card:hover .link-tag { background: #1e8449; }
+    .denda-table td { padding:10px 14px; font-size:.85rem; border-bottom:1px solid #fce8b2; }
+    .denda-table tr:last-child td { border-bottom:none; }
+    .denda-table tr:nth-child(even) td { background:#fef9e7; }
 
-    /* ── PENGUMUMAN ── */
-    .announcement-list { display: flex; flex-direction: column; gap: 14px; }
-    .announcement-item {
-      background: var(--card-bg);
-      border-radius: 14px;
-      padding: 18px 20px;
-      border-left: 5px solid var(--accent);
-      box-shadow: 0 2px 10px rgba(0,0,0,.05);
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-    .announcement-item:nth-child(2) { border-left-color: #27ae60; }
-    .announcement-item:nth-child(3) { border-left-color: var(--accent2); }
-    .ann-icon { font-size: 1.8rem; flex-shrink: 0; }
-    .ann-date { font-size: .75rem; color: var(--muted); font-weight: 700; margin-bottom: 4px; }
-    .ann-title { font-weight: 800; font-size: .95rem; color: var(--text); }
-    .ann-desc { font-size: .85rem; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+    /* ─────────── SIDEBAR ─────────── */
+    .sidebar { display:flex; flex-direction:column; gap:24px; }
 
-    /* ── FORM CARI ── */
-    .search-box {
-      background: var(--card-bg);
-      border-radius: 20px;
-      padding: 32px;
-      box-shadow: 0 4px 20px rgba(0,0,0,.08);
-      max-width: 680px;
-      margin: auto;
-      text-align: center;
+    /* Anggota info */
+    .member-card {
+      background:linear-gradient(135deg,var(--primary),var(--primary-dk));
+      color:white; border-radius:20px;
+      padding:24px; text-align:center;
+      box-shadow:0 4px 20px rgba(26,82,118,.3);
     }
-    .search-box h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: var(--primary); margin-bottom: 18px; }
-    .search-row {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+    .member-avatar {
+      width:72px; height:72px; background:var(--accent);
+      border-radius:50%; margin:0 auto 14px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:2rem; box-shadow:0 4px 16px rgba(243,156,18,.5);
     }
-    .search-row input, .search-row select {
-      flex: 1;
-      min-width: 140px;
-      padding: 12px 18px;
-      border: 2px solid #d5e8f7;
-      border-radius: 50px;
-      font-family: 'Nunito', sans-serif;
-      font-size: .9rem;
-      outline: none;
-      color: var(--text);
-      background: var(--light);
-      transition: border .2s;
+    .member-name { font-family:'Playfair Display',serif; font-size:1.15rem; font-weight:700; }
+    .member-id   { font-size:.8rem; opacity:.7; margin-top:4px; }
+    .member-kelas {
+      margin-top:10px; background:rgba(255,255,255,.15);
+      border-radius:20px; padding:4px 16px; font-size:.82rem; font-weight:700; display:inline-block;
     }
-    .search-row input:focus, .search-row select:focus { border-color: var(--primary); }
+    .member-stats {
+      display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px;
+    }
+    .ms-item {
+      background:rgba(255,255,255,.12); border-radius:12px; padding:10px 8px; text-align:center;
+    }
+    .ms-num  { font-size:1.4rem; font-weight:900; color:var(--accent); display:block; }
+    .ms-lbl  { font-size:.72rem; opacity:.75; }
 
-    /* ── JAM OPERASIONAL ── */
-    .jam-table { width: 100%; border-collapse: collapse; }
-    .jam-table th, .jam-table td {
-      padding: 12px 16px;
-      text-align: left;
-      font-size: .9rem;
-      border-bottom: 1px solid #eaf0f6;
+    /* Quick actions */
+    .quick-actions { display:flex; flex-direction:column; gap:10px; }
+    .qa-item {
+      background:var(--white); border-radius:14px;
+      border:2px solid var(--border); padding:14px 18px;
+      display:flex; align-items:center; gap:14px;
+      cursor:pointer; transition:all .2s; text-decoration:none; color:var(--text);
     }
-    .jam-table th { background: var(--primary); color: white; font-weight: 700; }
-    .jam-table tr:last-child td { border-bottom: none; }
-    .jam-table tr:nth-child(even) td { background: #f7fbfe; }
-    .badge-open { background: #d5f5e3; color: #1e8449; padding: 2px 10px; border-radius: 20px; font-size: .75rem; font-weight: 800; }
-    .badge-closed { background: #fdecea; color: #c0392b; padding: 2px 10px; border-radius: 20px; font-size: .75rem; font-weight: 800; }
+    .qa-item:hover { border-color:var(--primary); background:var(--light); transform:translateX(4px); }
+    .qa-icon { font-size:1.5rem; flex-shrink:0; }
+    .qa-text strong { display:block; font-size:.9rem; font-weight:800; color:var(--primary); }
+    .qa-text span   { font-size:.78rem; color:var(--muted); }
 
-    /* ── FOOTER ── */
-    footer {
-      background: #0e2f44;
-      color: rgba(255,255,255,.75);
-      padding: 40px 24px 20px;
+    /* Alert box */
+    .alert {
+      border-radius:14px; padding:14px 18px;
+      display:flex; gap:12px; align-items:flex-start; font-size:.87rem; line-height:1.5;
     }
+    .alert-warn { background:#fef9c3; border-left:4px solid var(--accent); }
+    .alert-info { background:#dbeafe; border-left:4px solid var(--primary); }
+    .alert-ok   { background:var(--green-lt); border-left:4px solid #27ae60; }
+    .alert-err  { background:var(--red-lt); border-left:4px solid var(--accent2); }
+    .alert-icon { font-size:1.3rem; flex-shrink:0; }
+
+    /* Prosedur steps */
+    .steps { display:flex; flex-direction:column; gap:14px; }
+    .step-item { display:flex; gap:14px; align-items:flex-start; }
+    .step-num {
+      width:34px; height:34px; background:var(--primary); color:white;
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-weight:900; font-size:.88rem; flex-shrink:0; margin-top:2px;
+    }
+    .step-body strong { font-size:.9rem; font-weight:800; color:var(--text); display:block; }
+    .step-body p { font-size:.83rem; color:var(--muted); margin-top:3px; line-height:1.5; }
+
+    /* Progress bar */
+    .progress-wrap { margin-top:8px; }
+    .progress-label { display:flex; justify-content:space-between; font-size:.78rem; color:var(--muted); margin-bottom:5px; }
+    .progress-bar { height:9px; background:#e0ecf6; border-radius:20px; overflow:hidden; }
+    .progress-fill { height:100%; border-radius:20px; transition:width .6s ease; }
+
+    /* Tabs */
+    .tabs { display:flex; gap:4px; margin-bottom:20px; background:var(--light); border-radius:14px; padding:4px; }
+    .tab-btn {
+      flex:1; padding:9px 10px; border:none; background:transparent;
+      border-radius:10px; font-family:'Nunito',sans-serif; font-weight:800; font-size:.83rem;
+      cursor:pointer; color:var(--muted); transition:all .2s;
+    }
+    .tab-btn.active { background:var(--white); color:var(--primary); box-shadow:0 2px 8px rgba(0,0,0,.08); }
+    .tab-panel { display:none; }
+    .tab-panel.active { display:block; }
+
+    /* ─────────── FOOTER ─────────── */
+    footer { background:#0e2f44; color:rgba(255,255,255,.75); padding:40px 24px 20px; }
     .footer-inner {
-      max-width: 1100px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 32px;
-      margin-bottom: 28px;
+      max-width:1100px; margin:auto;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:32px; margin-bottom:28px;
     }
     .footer-col h4 {
-      color: var(--accent);
-      font-weight: 800;
-      font-size: .95rem;
-      margin-bottom: 14px;
-      text-transform: uppercase;
-      letter-spacing: .5px;
+      color:var(--accent); font-weight:800; font-size:.95rem;
+      margin-bottom:14px; text-transform:uppercase; letter-spacing:.5px;
     }
-    .footer-col p, .footer-col li {
-      font-size: .85rem;
-      line-height: 1.7;
-      list-style: none;
-    }
-    .footer-col li a {
-      color: rgba(255,255,255,.7);
-      text-decoration: none;
-      transition: color .2s;
-    }
-    .footer-col li a:hover { color: var(--accent); }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,.1);
-      padding-top: 18px;
-      text-align: center;
-      font-size: .8rem;
-      opacity: .6;
-    }
+    .footer-col p, .footer-col li { font-size:.85rem; line-height:1.7; list-style:none; }
+    .footer-col li a { color:rgba(255,255,255,.7); text-decoration:none; transition:color .2s; }
+    .footer-col li a:hover { color:var(--accent); }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,.1); padding-top:18px; text-align:center; font-size:.8rem; opacity:.6; }
 
-    @media (max-width: 600px) {
-      .header-inner { flex-direction: column; text-align: center; }
-      .hero::before, .hero::after { display: none; }
+    /* ─────────── MODAL ─────────── */
+    .modal-overlay {
+      display:none; position:fixed; inset:0;
+      background:rgba(0,0,0,.5); z-index:1000;
+      align-items:center; justify-content:center; padding:20px;
+    }
+    .modal-overlay.open { display:flex; }
+    .modal {
+      background:var(--white); border-radius:24px;
+      max-width:480px; width:100%;
+      box-shadow:0 20px 60px rgba(0,0,0,.25);
+      animation:slideUp .3s ease;
+    }
+    @keyframes slideUp { from{transform:translateY(30px);opacity:0} to{transform:translateY(0);opacity:1} }
+    .modal-header {
+      background:linear-gradient(135deg,var(--primary),var(--primary-dk));
+      color:white; padding:22px 26px; border-radius:24px 24px 0 0;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .modal-header h3 { font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:700; }
+    .modal-close { background:rgba(255,255,255,.2); border:none; color:white; border-radius:50%; width:32px; height:32px; font-size:1.1rem; cursor:pointer; transition:background .2s; }
+    .modal-close:hover { background:rgba(255,255,255,.35); }
+    .modal-body { padding:24px 26px; }
+    .modal-footer { padding:16px 26px 22px; display:flex; gap:10px; justify-content:flex-end; }
+
+    /* ─────────── TOAST ─────────── */
+    .toast {
+      position:fixed; bottom:28px; right:28px;
+      background:var(--primary-xdk); color:white;
+      padding:14px 22px; border-radius:14px;
+      font-size:.88rem; font-weight:700;
+      box-shadow:0 8px 24px rgba(0,0,0,.25);
+      display:flex; align-items:center; gap:10px;
+      transform:translateY(80px); opacity:0;
+      transition:all .35s; z-index:2000;
+    }
+    .toast.show { transform:translateY(0); opacity:1; }
+    .toast.success { background:#1e8449; }
+
+    @media(max-width:600px){
+      .header-inner { flex-direction:column; text-align:center; }
     }
   </style>
 </head>
@@ -515,284 +456,531 @@
   </div>
 </header>
 
-<!-- ── NAVIGASI ── -->
+<!-- ── NAV ── -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="active">🏠 Beranda</a>
-    <a href="#koleksi">📚 Koleksi Buku</a>
-    <a href="#cari">🔍 Cari Buku</a>
-    <a href="peminjaman/peminjaman.html">📋 Peminjaman</a>
-    <a href="#pengumuman">📢 Pengumuman</a>
-    <a href="#jam">🕐 Jam Operasional</a>
-    <a href="#kontak">📍 Kontak</a>
+    <a href="../index.html">🏠 Beranda</a>
+    <a href="../index.html#koleksi">📚 Koleksi Buku</a>
+    <a href="../index.html#cari">🔍 Cari Buku</a>
+    <a href="peminjaman.html" class="active">📋 Peminjaman</a>
+    <a href="../index.html#pengumuman">📢 Pengumuman</a>
+    <a href="../index.html#jam">🕐 Jam Operasional</a>
+    <a href="../index.html#kontak">📍 Kontak</a>
   </div>
 </nav>
 
-<!-- ── HERO ── -->
-<section class="hero">
-  <h2>Selamat Datang di Perpustakaan Kami 👋</h2>
-  <p>Temukan ribuan buku menarik untuk belajar, membaca, dan mengeksplorasi dunia pengetahuan bersama teman-teman.</p>
-  <div class="hero-btns">
-    <a href="#cari" class="btn btn-primary">🔍 Cari Buku</a>
-    <a href="#koleksi" class="btn btn-accent">📖 Lihat Koleksi</a>
-  </div>
-</section>
-
-<!-- ── STATISTIK ── -->
-<div class="stats-bar">
-  <div class="stats-inner">
-    <div class="stat-item">
-      <span class="num">1.250+</span>
-      <span class="lbl">📚 Total Buku</span>
-    </div>
-    <div class="stat-item">
-      <span class="num">320</span>
-      <span class="lbl">👦 Anggota Aktif</span>
-    </div>
-    <div class="stat-item">
-      <span class="num">18</span>
-      <span class="lbl">📂 Kategori</span>
-    </div>
-    <div class="stat-item">
-      <span class="num">95</span>
-      <span class="lbl">📥 Dipinjam Bulan Ini</span>
-    </div>
+<!-- ── BREADCRUMB ── -->
+<div class="breadcrumb">
+  <div style="max-width:1100px;margin:auto;">
+    <a href="../index.html">🏠 Beranda</a>
+    <span>›</span>
+    <strong style="color:var(--primary);">📋 Peminjaman Buku</strong>
   </div>
 </div>
 
-<!-- ── FITUR LAYANAN ── -->
-<section>
-  <div class="section-inner">
-    <h2 class="section-title">Layanan <span>Perpustakaan</span></h2>
-    <p class="section-sub">Berbagai layanan untuk mendukung kegiatan belajar siswa</p>
-    <div class="features-grid">
-      <a href="peminjaman/peminjaman.html" class="feature-card">
-        <div class="feature-icon">📖</div>
-        <h3>Peminjaman Buku</h3>
-        <p>Pinjam buku favorit kamu hingga 7 hari dan dapat diperpanjang satu kali.</p>
-        <span class="link-tag">📋 Buka Halaman Peminjaman</span>
-      </a>
-      <div class="feature-card">
-        <div class="feature-icon">🔍</div>
-        <h3>Katalog Digital</h3>
-        <p>Cari dan temukan buku yang tersedia secara online sebelum datang ke perpustakaan.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📝</div>
-        <h3>Ruang Belajar</h3>
-        <p>Fasilitas ruang baca yang nyaman untuk belajar bersama maupun mandiri.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎉</div>
-        <h3>Lomba & Kegiatan</h3>
-        <p>Ikuti berbagai lomba membaca, menulis cerita, dan kegiatan literasi seru lainnya.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ── PAGE HERO ── -->
+<div class="page-hero">
+  <h2>📋 Hub Peminjaman Buku</h2>
+  <p>Ajukan peminjaman, cek status buku yang dipinjam, perpanjang masa pinjam, dan lihat riwayat peminjaman kamu di sini.</p>
+</div>
 
-<!-- ── KOLEKSI BUKU ── -->
-<section class="alt" id="koleksi">
-  <div class="section-inner">
-    <h2 class="section-title">Koleksi <span>Terbaru & Populer</span></h2>
-    <p class="section-sub">Buku-buku pilihan yang bisa kamu pinjam sekarang</p>
-    <div class="books-grid">
+<!-- ── MAIN LAYOUT ── -->
+<div class="main-wrap">
 
-      <div class="book-card">
-        <div class="book-cover" style="background:#dbeafe;">
-          📘
-          <span class="book-badge new">Baru</span>
-        </div>
-        <div class="book-info">
-          <h4>Ensiklopedia Sains Anak</h4>
-          <p>Penulis: Tim Penulis Cipta</p>
-          <span class="kategori">Sains</span>
-        </div>
-      </div>
+  <!-- ══════ KIRI ══════ -->
+  <div class="main-col">
 
-      <div class="book-card">
-        <div class="book-cover" style="background:#dcfce7;">
-          🌿
-          <span class="book-badge popular">Populer</span>
-        </div>
-        <div class="book-info">
-          <h4>Kisah Nabi & Rasul Pilihan</h4>
-          <p>Penulis: Abdul Aziz</p>
-          <span class="kategori">Agama</span>
-        </div>
-      </div>
-
-      <div class="book-card">
-        <div class="book-cover" style="background:#fef9c3;">
-          🦁
-          <span class="book-badge popular">Populer</span>
-        </div>
-        <div class="book-info">
-          <h4>Fabel Nusantara</h4>
-          <p>Penulis: Hasan Basri</p>
-          <span class="kategori">Cerita</span>
-        </div>
-      </div>
-
-      <div class="book-card">
-        <div class="book-cover" style="background:#fce7f3;">
-          🔢
-          <span class="book-badge new">Baru</span>
-        </div>
-        <div class="book-info">
-          <h4>Matematika Itu Mudah!</h4>
-          <p>Penulis: Siti Rahayu</p>
-          <span class="kategori">Matematika</span>
-        </div>
-      </div>
-
-      <div class="book-card">
-        <div class="book-cover" style="background:#ede9fe;">
-          🌏
-          <span class="book-badge">Tersedia</span>
-        </div>
-        <div class="book-info">
-          <h4>Atlas Indonesia Lengkap</h4>
-          <p>Penulis: Badan Kartografi</p>
-          <span class="kategori">Geografi</span>
-        </div>
-      </div>
-
-      <div class="book-card">
-        <div class="book-cover" style="background:#ffedd5;">
-          🚀
-          <span class="book-badge new">Baru</span>
-        </div>
-        <div class="book-info">
-          <h4>Petualangan di Luar Angkasa</h4>
-          <p>Penulis: Rina Kartika</p>
-          <span class="kategori">Fiksi</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ── PENCARIAN ── -->
-<section id="cari">
-  <div class="section-inner">
-    <div class="search-box">
-      <h3>🔍 Cari Buku di Perpustakaan</h3>
-      <div class="search-row">
-        <input type="text" placeholder="Judul / Pengarang / Kata kunci…" />
-        <select>
-          <option value="">Semua Kategori</option>
-          <option>Sains</option>
-          <option>Agama</option>
-          <option>Matematika</option>
-          <option>Cerita & Dongeng</option>
-          <option>Geografi</option>
-          <option>Sejarah</option>
-          <option>Fiksi</option>
-        </select>
-        <button class="btn btn-primary" style="flex-shrink:0;">Cari 🔍</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── PENGUMUMAN ── -->
-<section class="alt" id="pengumuman">
-  <div class="section-inner">
-    <h2 class="section-title">📢 <span>Pengumuman</span></h2>
-    <p class="section-sub">Informasi terbaru dari perpustakaan</p>
-    <div class="announcement-list">
-
-      <div class="announcement-item">
-        <div class="ann-icon">📅</div>
+    <!-- ① FORM PEMINJAMAN -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-blue">📝</div>
         <div>
-          <div class="ann-date">07 April 2026</div>
-          <div class="ann-title">Perpustakaan Buka Kembali Setelah Libur Lebaran</div>
-          <div class="ann-desc">Perpustakaan kembali beroperasi normal mulai Senin, 7 April 2026. Buku yang terlambat dikembalikan selama libur tidak dikenakan denda.</div>
+          <h3>Form Peminjaman Buku</h3>
+          <p>Isi data lengkap untuk meminjam buku dari perpustakaan</p>
         </div>
       </div>
 
-      <div class="announcement-item">
-        <div class="ann-icon">🏆</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Nama Lengkap Siswa <span class="req">*</span></label>
+          <input type="text" id="namaSiswa" placeholder="Contoh: Ahmad Fauzi" />
+        </div>
+        <div class="form-group">
+          <label>Nomor Induk Siswa (NIS) <span class="req">*</span></label>
+          <input type="text" id="nis" placeholder="Contoh: 2024001" />
+        </div>
+        <div class="form-group">
+          <label>Kelas <span class="req">*</span></label>
+          <select id="kelas">
+            <option value="">— Pilih Kelas —</option>
+            <option>1A</option><option>1B</option>
+            <option>2A</option><option>2B</option>
+            <option>3A</option><option>3B</option>
+            <option>4A</option><option>4B</option>
+            <option>5A</option><option>5B</option>
+            <option>6A</option><option>6B</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Nomor Anggota Perpustakaan</label>
+          <input type="text" id="noAnggota" placeholder="Contoh: LIB-2024-001" />
+          <span class="form-hint">Kosongkan jika belum punya kartu anggota</span>
+        </div>
+
+        <div class="form-group full">
+          <label>Judul Buku yang Dipinjam <span class="req">*</span></label>
+          <input type="text" id="judulBuku" placeholder="Ketik judul buku yang ingin dipinjam…" />
+          <span class="form-hint">Pastikan judul sesuai dengan katalog perpustakaan</span>
+        </div>
+        <div class="form-group">
+          <label>Kode / Nomor Buku</label>
+          <input type="text" id="kodeBuku" placeholder="Contoh: SN-042" />
+        </div>
+        <div class="form-group">
+          <label>Kategori Buku</label>
+          <select id="kategori">
+            <option value="">— Pilih Kategori —</option>
+            <option>Sains & Alam</option>
+            <option>Agama Islam</option>
+            <option>Matematika</option>
+            <option>Cerita & Dongeng</option>
+            <option>Geografi</option>
+            <option>Sejarah & Budaya</option>
+            <option>Fiksi & Petualangan</option>
+            <option>Bahasa Indonesia</option>
+            <option>Ensiklopedia</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tanggal Pinjam <span class="req">*</span></label>
+          <input type="date" id="tglPinjam" />
+        </div>
+        <div class="form-group">
+          <label>Tanggal Kembali (Rencana)</label>
+          <input type="date" id="tglKembali" readonly style="background:#f0f8ff;cursor:not-allowed;"/>
+          <span class="form-hint">Otomatis 7 hari dari tanggal pinjam</span>
+        </div>
+        <div class="form-group full">
+          <label>Catatan Tambahan</label>
+          <textarea id="catatan" placeholder="Contoh: kondisi buku, alasan khusus, dll."></textarea>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="margin-top:18px;">
+        <span class="alert-icon">ℹ️</span>
+        <div>Batas maksimal peminjaman adalah <strong>2 buku</strong> per siswa. Masa pinjam <strong>7 hari</strong> dan dapat diperpanjang <strong>1 kali</strong> melalui halaman ini.</div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="submitForm()">✅ Ajukan Peminjaman</button>
+        <button class="btn btn-outline" onclick="resetForm()">🔄 Reset Form</button>
+      </div>
+    </div>
+
+    <!-- ② STATUS PEMINJAMAN AKTIF -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-green">📖</div>
         <div>
-          <div class="ann-date">15 April 2026</div>
-          <div class="ann-title">Lomba Bercerita Tingkat SD se-Depok</div>
-          <div class="ann-desc">Daftarkan dirimu dalam lomba bercerita yang akan diadakan tanggal 15 April 2026. Hadiah menarik menanti para pemenang!</div>
+          <h3>Buku Sedang Dipinjam</h3>
+          <p>Daftar buku yang belum dikembalikan</p>
         </div>
       </div>
 
-      <div class="announcement-item">
-        <div class="ann-icon">📚</div>
+      <div style="overflow-x:auto; border-radius:14px; border:1px solid var(--border);">
+        <table class="loan-table">
+          <thead>
+            <tr>
+              <th>Buku</th>
+              <th>Tgl Pinjam</th>
+              <th>Batas Kembali</th>
+              <th>Sisa</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="loan-book-cell">
+                  <div class="book-thumb" style="background:#dbeafe;">📘</div>
+                  <div>
+                    <div class="loan-book-name">Ensiklopedia Sains Anak</div>
+                    <div class="loan-book-code">Kode: SN-042</div>
+                  </div>
+                </div>
+              </td>
+              <td>01 Apr 2026</td>
+              <td>08 Apr 2026</td>
+              <td><span class="days-left warn">1 hari</span></td>
+              <td><span class="badge badge-due">Segera Kembali</span></td>
+              <td>
+                <button class="btn btn-sm btn-green" onclick="openPerpanjang('Ensiklopedia Sains Anak','08 Apr 2026')">🔄 Perpanjang</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="loan-book-cell">
+                  <div class="book-thumb" style="background:#dcfce7;">🌿</div>
+                  <div>
+                    <div class="loan-book-name">Kisah Nabi & Rasul Pilihan</div>
+                    <div class="loan-book-code">Kode: AG-017</div>
+                  </div>
+                </div>
+              </td>
+              <td>03 Apr 2026</td>
+              <td>10 Apr 2026</td>
+              <td><span class="days-left ok">3 hari</span></td>
+              <td><span class="badge badge-active">Aktif</span></td>
+              <td>
+                <button class="btn btn-sm btn-green" onclick="openPerpanjang('Kisah Nabi & Rasul Pilihan','10 Apr 2026')">🔄 Perpanjang</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="progress-wrap" style="margin-top:18px;">
+        <div class="progress-label">
+          <span>Kuota Peminjaman</span>
+          <span style="font-weight:800;color:var(--primary);">2 / 2 buku</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:100%;background:var(--accent);"></div>
+        </div>
+        <div style="font-size:.76rem;color:var(--accent2);margin-top:5px;font-weight:700;">⚠️ Kuota peminjaman penuh. Kembalikan buku untuk meminjam lagi.</div>
+      </div>
+    </div>
+
+    <!-- ③ RIWAYAT PEMINJAMAN -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-yellow">📋</div>
         <div>
-          <div class="ann-date">20 April 2026</div>
-          <div class="ann-title">Kedatangan Buku Baru — 50 Judul!</div>
-          <div class="ann-desc">Perpustakaan akan menerima 50 judul buku baru mencakup sains, ensiklopedia, dan buku cerita islami. Segera pinjam sebelum kehabisan!</div>
+          <h3>Riwayat Peminjaman</h3>
+          <p>Rekam jejak peminjaman buku kamu</p>
         </div>
       </div>
 
-    </div>
-  </div>
-</section>
+      <!-- TABS -->
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab(this,'tab-semua')">📚 Semua</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-dikembalikan')">✅ Dikembalikan</button>
+        <button class="tab-btn" onclick="switchTab(this,'tab-terlambat')">⚠️ Terlambat</button>
+      </div>
 
-<!-- ── JAM OPERASIONAL ── -->
-<section id="jam">
-  <div class="section-inner">
-    <h2 class="section-title">🕐 Jam <span>Operasional</span></h2>
-    <p class="section-sub">Perpustakaan terbuka untuk seluruh siswa dan guru</p>
-    <div style="overflow-x:auto; border-radius:16px; box-shadow:0 2px 16px rgba(0,0,0,.08);">
-      <table class="jam-table">
-        <thead>
-          <tr>
-            <th>Hari</th>
-            <th>Jam Buka</th>
-            <th>Jam Tutup</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Senin</td><td>07.30</td><td>13.00</td><td><span class="badge-open">Buka</span></td></tr>
-          <tr><td>Selasa</td><td>07.30</td><td>13.00</td><td><span class="badge-open">Buka</span></td></tr>
-          <tr><td>Rabu</td><td>07.30</td><td>13.00</td><td><span class="badge-open">Buka</span></td></tr>
-          <tr><td>Kamis</td><td>07.30</td><td>13.00</td><td><span class="badge-open">Buka</span></td></tr>
-          <tr><td>Jumat</td><td>07.30</td><td>11.00</td><td><span class="badge-open">Buka</span></td></tr>
-          <tr><td>Sabtu</td><td colspan="2">Tutup</td><td><span class="badge-closed">Tutup</span></td></tr>
-          <tr><td>Minggu</td><td colspan="2">Tutup</td><td><span class="badge-closed">Tutup</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
+      <div id="tab-semua" class="tab-panel active">
+        <div style="overflow-x:auto; border-radius:14px; border:1px solid var(--border);">
+          <table class="history-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Judul Buku</th>
+                <th>Tgl Pinjam</th>
+                <th>Tgl Kembali</th>
+                <th>Status</th>
+                <th>Denda</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:var(--muted);font-size:.78rem;">001</td>
+                <td><strong>Fabel Nusantara</strong></td>
+                <td>10 Mar 2026</td><td>17 Mar 2026</td>
+                <td><span class="badge badge-returned">✅ Dikembalikan</span></td>
+                <td style="color:var(--green);font-weight:700;">Rp 0</td>
+              </tr>
+              <tr>
+                <td style="color:var(--muted);font-size:.78rem;">002</td>
+                <td><strong>Atlas Indonesia Lengkap</strong></td>
+                <td>18 Mar 2026</td><td>25 Mar 2026</td>
+                <td><span class="badge badge-returned">✅ Dikembalikan</span></td>
+                <td style="color:var(--green);font-weight:700;">Rp 0</td>
+              </tr>
+              <tr>
+                <td style="color:var(--muted);font-size:.78rem;">003</td>
+                <td><strong>Matematika Itu Mudah!</strong></td>
+                <td>22 Mar 2026</td><td>29 Mar 2026</td>
+                <td><span class="badge badge-overdue">⚠️ Terlambat +2 hr</span></td>
+                <td style="color:var(--accent2);font-weight:700;">Rp 2.000</td>
+              </tr>
+              <tr>
+                <td style="color:var(--muted);font-size:.78rem;">004</td>
+                <td><strong>Petualangan di Luar Angkasa</strong></td>
+                <td>01 Apr 2026</td><td>—</td>
+                <td><span class="badge badge-active">📖 Dipinjam</span></td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-<!-- ── KONTAK ── -->
-<section class="alt" id="kontak">
-  <div class="section-inner">
-    <h2 class="section-title">📍 <span>Kontak & Lokasi</span></h2>
-    <p class="section-sub">Hubungi kami untuk informasi lebih lanjut</p>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🏫</div>
-        <h3>Alamat</h3>
-        <p>Jl. Kukusan Teknik, Kukusan, Kec. Beji, Kota Depok, Jawa Barat</p>
+      <div id="tab-dikembalikan" class="tab-panel">
+        <div style="overflow-x:auto; border-radius:14px; border:1px solid var(--border);">
+          <table class="history-table">
+            <thead><tr><th>#</th><th>Judul Buku</th><th>Tgl Pinjam</th><th>Tgl Kembali</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr>
+                <td style="color:var(--muted);font-size:.78rem;">001</td>
+                <td><strong>Fabel Nusantara</strong></td>
+                <td>10 Mar 2026</td><td>17 Mar 2026</td>
+                <td><span class="badge badge-returned">✅ Tepat Waktu</span></td>
+              </tr>
+              <tr>
+                <td style="color:var(--muted);font-size:.78rem;">002</td>
+                <td><strong>Atlas Indonesia Lengkap</strong></td>
+                <td>18 Mar 2026</td><td>25 Mar 2026</td>
+                <td><span class="badge badge-returned">✅ Tepat Waktu</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">📞</div>
-        <h3>Telepon</h3>
-        <p>(021) XXXX-XXXX<br>Hubungi di jam operasional</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">✉️</div>
-        <h3>Email</h3>
-        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b8c8ddcac8cdcbccd9d3d9d9d6f8cbdcd5cdd08889d3cdd3cdcbd9d696cbdbd096d1dc">[email&#160;protected]</a></p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">👩‍🏫</div>
-        <h3>Pustakawan</h3>
-        <p>Ibu/Bapak Pustakawan<br>Siap membantu kamu!</p>
+
+      <div id="tab-terlambat" class="tab-panel">
+        <div style="overflow-x:auto; border-radius:14px; border:1px solid var(--border);">
+          <table class="history-table">
+            <thead><tr><th>#</th><th>Judul Buku</th><th>Batas Kembali</th><th>Keterlambatan</th><th>Denda</th></tr></thead>
+            <tbody>
+              <tr>
+                <td style="color:var(--muted);font-size:.78rem;">003</td>
+                <td><strong>Matematika Itu Mudah!</strong></td>
+                <td>29 Mar 2026</td>
+                <td style="color:var(--accent2);font-weight:800;">+2 hari</td>
+                <td style="color:var(--accent2);font-weight:800;">Rp 2.000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="alert alert-err" style="margin-top:14px;">
+          <span class="alert-icon">❗</span>
+          <div>Total denda yang perlu dibayar: <strong>Rp 2.000</strong>. Silakan bayar ke pustakawan saat mengembalikan buku.</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+
+    <!-- ④ PROSEDUR PEMINJAMAN -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-purple">🗺️</div>
+        <div>
+          <h3>Prosedur Peminjaman</h3>
+          <p>Langkah mudah meminjam buku perpustakaan</p>
+        </div>
+      </div>
+      <div class="steps">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <strong>Cari Buku di Katalog</strong>
+            <p>Gunakan fitur <a href="../index.html#cari" style="color:var(--primary);font-weight:700;">Cari Buku</a> di beranda untuk memastikan buku yang kamu inginkan tersedia di perpustakaan.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <strong>Isi Form Peminjaman</strong>
+            <p>Lengkapi form di atas dengan data diri dan buku yang ingin dipinjam, lalu klik "Ajukan Peminjaman".</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <strong>Ambil Buku ke Pustakawan</strong>
+            <p>Tunjukkan kartu anggota atau NIS kamu kepada pustakawan untuk pengambilan buku dan pencatatan resmi.</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <strong>Kembalikan Tepat Waktu</strong>
+            <p>Kembalikan buku paling lambat 7 hari setelah tanggal pinjam. Keterlambatan dikenakan denda Rp 1.000/hari.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ⑤ ATURAN & DENDA -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-icon icon-red">📜</div>
+        <div>
+          <h3>Aturan Peminjaman & Denda</h3>
+          <p>Ketentuan yang berlaku di perpustakaan</p>
+        </div>
+      </div>
+
+      <ul class="rules-list">
+        <li><span class="ri">📚</span> Setiap siswa dapat meminjam maksimal <strong>2 buku</strong> dalam waktu bersamaan.</li>
+        <li><span class="ri">📅</span> Masa pinjam adalah <strong>7 hari kalender</strong> sejak tanggal peminjaman.</li>
+        <li><span class="ri">🔄</span> Perpanjangan dapat dilakukan <strong>1 kali</strong> selama 7 hari tambahan, sebelum batas waktu habis.</li>
+        <li><span class="ri">🏠</span> Buku hanya boleh dibawa pulang setelah proses pencatatan resmi oleh pustakawan.</li>
+        <li><span class="ri">🛡️</span> Siswa wajib menjaga kondisi buku. Buku yang rusak / hilang wajib diganti sesuai harga buku.</li>
+        <li><span class="ri">🚫</span> Dilarang mencoret, merobek, atau merusak buku dalam bentuk apapun.</li>
+        <li><span class="ri">⚠️</span> Siswa yang memiliki tunggakan denda tidak dapat meminjam buku baru hingga denda dilunasi.</li>
+      </ul>
+
+      <h4 style="margin-top:22px;margin-bottom:12px;font-family:'Playfair Display',serif;color:var(--primary);">💰 Tabel Denda Keterlambatan</h4>
+      <div style="border-radius:14px;overflow:hidden;border:1px solid #fce8b2;">
+        <table class="denda-table">
+          <thead>
+            <tr><th>Keterlambatan</th><th>Denda per Hari</th><th>Total Estimasi</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1 – 3 hari</td><td>Rp 1.000</td><td>Rp 1.000 – Rp 3.000</td></tr>
+            <tr><td>4 – 7 hari</td><td>Rp 1.000</td><td>Rp 4.000 – Rp 7.000</td></tr>
+            <tr><td>Lebih dari 7 hari</td><td>Rp 1.000 + lapor wali</td><td>Disesuaikan</td></tr>
+            <tr><td>Buku Hilang</td><td colspan="2">Ganti buku baru / harga buku</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /main-col -->
+
+  <!-- ══════ SIDEBAR ══════ -->
+  <div class="sidebar">
+
+    <!-- Kartu Anggota -->
+    <div class="member-card">
+      <div class="member-avatar">👦</div>
+      <div class="member-name">Ahmad Fauzi</div>
+      <div class="member-id">NIS: 2024-0042 · LIB-2024-042</div>
+      <span class="member-kelas">📚 Kelas 5A</span>
+      <div class="member-stats">
+        <div class="ms-item">
+          <span class="ms-num">2</span>
+          <span class="ms-lbl">Dipinjam</span>
+        </div>
+        <div class="ms-item">
+          <span class="ms-num">14</span>
+          <span class="ms-lbl">Total Pinjam</span>
+        </div>
+        <div class="ms-item">
+          <span class="ms-num">0</span>
+          <span class="ms-lbl">Buku Terlambat</span>
+        </div>
+        <div class="ms-item">
+          <span class="ms-num">2k</span>
+          <span class="ms-lbl">Denda (Rp)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alert Denda -->
+    <div class="alert alert-warn">
+      <span class="alert-icon">⚠️</span>
+      <div style="font-size:.84rem;">Kamu memiliki <strong>tunggakan denda Rp 2.000</strong>. Harap dibayarkan ke pustakawan.</div>
+    </div>
+
+    <!-- Aksi Cepat -->
+    <div class="card" style="padding:20px;">
+      <div class="card-header" style="margin-bottom:14px;padding-bottom:12px;">
+        <div class="card-icon icon-blue">⚡</div>
+        <div><h3>Aksi Cepat</h3></div>
+      </div>
+      <div class="quick-actions">
+        <a href="../index.html#cari" class="qa-item">
+          <span class="qa-icon">🔍</span>
+          <div class="qa-text">
+            <strong>Cari Buku</strong>
+            <span>Temukan buku yang tersedia</span>
+          </div>
+        </a>
+        <div class="qa-item" onclick="openPerpanjang('Ensiklopedia Sains Anak','08 Apr 2026')">
+          <span class="qa-icon">🔄</span>
+          <div class="qa-text">
+            <strong>Perpanjang Pinjaman</strong>
+            <span>Tambah 7 hari masa pinjam</span>
+          </div>
+        </div>
+        <div class="qa-item" onclick="openKembali()">
+          <span class="qa-icon">📥</span>
+          <div class="qa-text">
+            <strong>Catat Pengembalian</strong>
+            <span>Tandai buku telah dikembalikan</span>
+          </div>
+        </div>
+        <div class="qa-item" onclick="openCekDenda()">
+          <span class="qa-icon">💰</span>
+          <div class="qa-text">
+            <strong>Cek Denda</strong>
+            <span>Hitung denda keterlambatan</span>
+          </div>
+        </div>
+        <a href="../index.html#kontak" class="qa-item">
+          <span class="qa-icon">👩‍🏫</span>
+          <div class="qa-text">
+            <strong>Hubungi Pustakawan</strong>
+            <span>Butuh bantuan? Tanya kami</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buku Batas Kembali Hari Ini -->
+    <div class="card" style="padding:20px;">
+      <div class="card-header" style="margin-bottom:14px;padding-bottom:12px;">
+        <div class="card-icon icon-yellow">⏰</div>
+        <div><h3>Pengingat Batas Waktu</h3></div>
+      </div>
+      <div class="alert alert-warn" style="margin-bottom:12px;">
+        <span class="alert-icon">📅</span>
+        <div style="font-size:.83rem;"><strong>Ensiklopedia Sains Anak</strong> harus dikembalikan besok, <strong>8 Apr 2026</strong>.</div>
+      </div>
+      <div class="alert alert-ok">
+        <span class="alert-icon">✅</span>
+        <div style="font-size:.83rem;"><strong>Kisah Nabi & Rasul</strong> masih aman, batas hingga <strong>10 Apr 2026</strong>.</div>
+      </div>
+    </div>
+
+    <!-- Kalkulator Denda -->
+    <div class="card" style="padding:20px;">
+      <div class="card-header" style="margin-bottom:16px;padding-bottom:12px;">
+        <div class="card-icon icon-red">🧮</div>
+        <div><h3>Kalkulator Denda</h3></div>
+      </div>
+      <div class="form-group" style="margin-bottom:12px;">
+        <label>Jumlah Hari Terlambat</label>
+        <input type="number" id="hariLambat" min="0" placeholder="Contoh: 3" oninput="hitungDenda()" />
+      </div>
+      <div id="hasilDenda" style="display:none;" class="alert alert-err">
+        <span class="alert-icon">💸</span>
+        <div id="hasilDendaText" style="font-size:.88rem;"></div>
+      </div>
+      <div id="hasilDendaOk" style="display:none;" class="alert alert-ok">
+        <span class="alert-icon">🎉</span>
+        <div style="font-size:.88rem;">Tidak ada denda! Buku dikembalikan tepat waktu.</div>
+      </div>
+    </div>
+
+    <!-- Info Perpustakaan -->
+    <div class="card" style="padding:20px;">
+      <div class="card-header" style="margin-bottom:14px;padding-bottom:12px;">
+        <div class="card-icon icon-green">🏫</div>
+        <div><h3>Info Perpustakaan</h3></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;font-size:.85rem;">
+        <div style="display:flex;gap:10px;align-items:center;">
+          <span>🕐</span>
+          <div><strong>Sen–Kam:</strong> 07.30 – 13.00<br><strong>Jumat:</strong> 07.30 – 11.00</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <span>📍</span><div>Jl. Kukusan Teknik, Beji, Depok</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <span>📞</span><div>(021) XXXX-XXXX</div>
+        </div>
+        <div style="display:flex;gap:10px;align-items:center;">
+          <span>✉️</span><div><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2656435456535552474d4747486655424b534e16174d534d535547480855454e084f42">[email&#160;protected]</a></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /sidebar -->
+</div><!-- /main-wrap -->
 
 <!-- ── FOOTER ── -->
 <footer>
@@ -804,21 +992,193 @@
     <div class="footer-col">
       <h4>Menu</h4>
       <ul>
-        <li><a href="#">🏠 Beranda</a></li>
-        <li><a href="#koleksi">📚 Koleksi Buku</a></li>
-        <li><a href="#cari">🔍 Cari Buku</a></li>
-        <li><a href="#pengumuman">📢 Pengumuman</a></li>
+        <li><a href="../index.html">🏠 Beranda</a></li>
+        <li><a href="../index.html#koleksi">📚 Koleksi Buku</a></li>
+        <li><a href="../index.html#cari">🔍 Cari Buku</a></li>
+        <li><a href="peminjaman.html">📋 Peminjaman</a></li>
+        <li><a href="../index.html#pengumuman">📢 Pengumuman</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Informasi</h4>
       <ul>
-        <li><a href="#jam">🕐 Jam Operasional</a></li>
-        <li><a href="#kontak">📍 Kontak</a></li>
+        <li><a href="../index.html#jam">🕐 Jam Operasional</a></li>
+        <li><a href="../index.html#kontak">📍 Kontak</a></li>
         <li><a href="#">📋 Tata Tertib</a></li>
         <li><a href="#">📑 Prosedur Peminjaman</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    &copy; 2026 P
+    &copy; 2026 Perpustakaan SD Muhammadiyah 01 Kukusan — Depok, Jawa Barat. Dibuat dengan ❤️ untuk siswa kami.
+  </div>
+</footer>
+
+<!-- ── MODAL PERPANJANG ── -->
+<div class="modal-overlay" id="modalPerpanjang">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>🔄 Perpanjang Masa Pinjam</h3>
+      <button class="modal-close" onclick="closeModal('modalPerpanjang')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="alert alert-info" style="margin-bottom:16px;">
+        <span class="alert-icon">📖</span>
+        <div id="modalBukuInfo" style="font-size:.88rem;"></div>
+      </div>
+      <div class="form-group">
+        <label>Alasan Perpanjangan</label>
+        <select>
+          <option>Belum selesai membaca</option>
+          <option>Digunakan untuk tugas sekolah</option>
+          <option>Sakit / tidak masuk sekolah</option>
+          <option>Lainnya</option>
+        </select>
+      </div>
+      <div class="alert alert-warn" style="margin-top:14px;">
+        <span class="alert-icon">⚠️</span>
+        <div style="font-size:.83rem;">Perpanjangan hanya bisa dilakukan <strong>1 kali</strong>. Pastikan kamu mengembalikan buku tepat waktu setelahnya.</div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modalPerpanjang')">Batal</button>
+      <button class="btn btn-green" onclick="konfirmasiPerpanjang()">✅ Konfirmasi Perpanjang</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── MODAL PENGEMBALIAN ── -->
+<div class="modal-overlay" id="modalKembali">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>📥 Catat Pengembalian Buku</h3>
+      <button class="modal-close" onclick="closeModal('modalKembali')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group" style="margin-bottom:14px;">
+        <label>Pilih Buku yang Dikembalikan</label>
+        <select>
+          <option>Ensiklopedia Sains Anak (Batas: 08 Apr 2026)</option>
+          <option>Kisah Nabi & Rasul Pilihan (Batas: 10 Apr 2026)</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin-bottom:14px;">
+        <label>Tanggal Pengembalian</label>
+        <input type="date" id="tglKembaliModal" />
+      </div>
+      <div class="form-group">
+        <label>Kondisi Buku Saat Dikembalikan</label>
+        <select>
+          <option>Baik / Tidak ada kerusakan</option>
+          <option>Ada sedikit kerusakan ringan</option>
+          <option>Rusak cukup parah</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeModal('modalKembali')">Batal</button>
+      <button class="btn btn-primary" onclick="konfirmasiKembali()">📥 Catat Pengembalian</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast">
+  <span id="toastIcon">✅</span>
+  <span id="toastMsg">Berhasil!</span>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ─── Set today's date ───
+  const today = new Date();
+  const fmt = d => d.toISOString().split('T')[0];
+  const tglPinjamEl = document.getElementById('tglPinjam');
+  tglPinjamEl.value = fmt(today);
+  setReturnDate();
+
+  tglPinjamEl.addEventListener('change', setReturnDate);
+  function setReturnDate(){
+    const d = new Date(tglPinjamEl.value);
+    d.setDate(d.getDate()+7);
+    document.getElementById('tglKembali').value = fmt(d);
+  }
+
+  // ─── Modal default date ───
+  document.getElementById('tglKembaliModal').value = fmt(today);
+
+  // ─── Form Submit ───
+  function submitForm(){
+    const nama  = document.getElementById('namaSiswa').value.trim();
+    const nis   = document.getElementById('nis').value.trim();
+    const kelas = document.getElementById('kelas').value;
+    const judul = document.getElementById('judulBuku').value.trim();
+    if(!nama||!nis||!kelas||!judul){
+      showToast('⚠️','Harap lengkapi semua field yang wajib diisi!', false);
+      return;
+    }
+    showToast('✅',`Peminjaman "${judul}" berhasil diajukan! Ambil buku ke pustakawan.`, true);
+  }
+  function resetForm(){
+    ['namaSiswa','nis','noAnggota','judulBuku','kodeBuku','catatan']
+      .forEach(id => document.getElementById(id).value='');
+    document.getElementById('kelas').value='';
+    document.getElementById('kategori').value='';
+    tglPinjamEl.value = fmt(today);
+    setReturnDate();
+  }
+
+  // ─── Tabs ───
+  function switchTab(btn, panelId){
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(panelId).classList.add('active');
+  }
+
+  // ─── Modals ───
+  function openPerpanjang(judul, batas){
+    document.getElementById('modalBukuInfo').innerHTML =
+      `Kamu akan memperpanjang peminjaman buku <strong>"${judul}"</strong>.<br>Batas kembali saat ini: <strong>${batas}</strong> → menjadi <strong>+7 hari</strong>.`;
+    document.getElementById('modalPerpanjang').classList.add('open');
+  }
+  function openKembali(){ document.getElementById('modalKembali').classList.add('open'); }
+  function openCekDenda(){
+    document.getElementById('hariLambat').value='';
+    document.getElementById('hasilDenda').style.display='none';
+    document.getElementById('hasilDendaOk').style.display='none';
+    document.getElementById('hariLambat').scrollIntoView({behavior:'smooth',block:'center'});
+    document.getElementById('hariLambat').focus();
+  }
+  function closeModal(id){ document.getElementById(id).classList.remove('open'); }
+
+  function konfirmasiPerpanjang(){
+    closeModal('modalPerpanjang');
+    showToast('✅','Perpanjangan berhasil! Masa pinjam diperpanjang 7 hari.', true);
+  }
+  function konfirmasiKembali(){
+    closeModal('modalKembali');
+    showToast('📥','Pengembalian buku berhasil dicatat!', true);
+  }
+
+  // ─── Kalkulator Denda ───
+  function hitungDenda(){
+    const h = parseInt(document.getElementById('hariLambat').value)||0;
+    const dEl  = document.getElementById('hasilDenda');
+    const okEl = document.getElementById('hasilDendaOk');
+    const txt  = document.getElementById('hasilDendaText');
+    if(h<=0){ dEl.style.display='none'; okEl.style.display='none'; return; }
+    const total = h * 1000;
+    txt.innerHTML = `Keterlambatan <strong>${h} hari</strong> → Denda: <strong>Rp ${total.toLocaleString('id-ID')}</strong>`;
+    dEl.style.display='flex'; okEl.style.display='none';
+  }
+
+  // ─── Toast ───
+  function showToast(icon, msg, ok){
+    const t = document.getElementById('toast');
+    document.getElementById('toastIcon').textContent = icon;
+    document.getElementById('toastMsg').textContent  = msg;
+    t.className = 'toast show' + (ok?' success':'');
+    setTimeout(()=>{ t.classList.remove('show'); }, 3800);
+  }
+
+  //
